@@ -46,7 +46,6 @@ class VisualPaginator extends Nette\Application\UI\Control
 	}
 
 
-
 	/**
 	 * Renders paginator.
 	 * @param array $options

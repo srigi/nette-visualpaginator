@@ -1,7 +1,7 @@
 {
     "name": "srigi/nette-visualpaginator",
     "description": "Addon to display paginator in Nette webapplications",
-    "version": "1.0.0",
+    "version": "1.0.1",
 
     "authors": [
         {

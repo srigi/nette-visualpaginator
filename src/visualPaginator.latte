@@ -4,7 +4,7 @@
 			{if $paginator->isFirst()}
 				<li class="disabled"><a>« Previous</a></li>
 			{else}
-				<li><a href="{link this, 'page' => $paginator->page - 1}" rel="prev">« Previous</a><li>
+				<li><a href="{link this, 'page' => $paginator->page - 1}" rel="prev">« Previous</a></li>
 			{/if}
 
 			{foreach $steps as $step}

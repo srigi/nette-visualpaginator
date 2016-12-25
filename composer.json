@@ -1,5 +1,5 @@
 {
-    "name": "srigi/nette-visualpaginator",
+    "name": "geniv/nette-visualpaginator",
     "description": "Addon to display paginator in Nette webapplications",
     "version": "1.0.1",
 
@@ -11,6 +11,10 @@
         {
             "name": "David Grudl",
             "email": "david@grudl.com"
+        },
+        {
+            "name": "Radek Fryšták",
+            "email": "geniv.radek@gmail.com"
         }
     ],
 

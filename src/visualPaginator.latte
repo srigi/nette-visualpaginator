@@ -2,12 +2,12 @@
     <nav>
         <ul class="pagination">
             <li n:if="!$paginator->isFirst()">
-                <a n:href="this, page => $paginator->page-1" aria-label="Previous"><span aria-hidden="true">&laquo;</span> {_'Předchozí'}</a>
+                <a n:href="this, 'page' => $paginator->page-1" aria-label="Previous"><span aria-hidden="true">&laquo;</span> {_'Předchozí'}</a>
             </li>
 
             {foreach $steps as $step}
                 {if $step == $paginator->page}
-                    <li class="active"><a href="#">{$step}</a></li>
+                    <li class="active"><a n:href="this, 'page' => $step">{$step}</a></li>
                 {else}
                     <li><a n:href="this, 'page' => $step">{$step}</a></li>
                 {/if}
@@ -15,7 +15,7 @@
             {/foreach}
 
             <li n:if="!$paginator->isLast()">
-                <a n:href="this, page => $paginator->page+1" aria-label="Next">{_'Další'} <span aria-hidden="true">&raquo;</span></a>
+                <a n:href="this, 'page' => $paginator->page+1" aria-label="Next">{_'Další'} <span aria-hidden="true">&raquo;</span></a>
             </li>
         </ul>
     </nav>

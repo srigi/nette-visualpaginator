@@ -10,7 +10,6 @@
  * @copyright  Copyright (c) 2009 David Grudl
  * @license    New BSD License
  * @link       http://addons.nette.org
- * @package    Nette Extras
  */
 
 
@@ -22,7 +21,6 @@ use Nette\Utils\Paginator;
  *
  * @author     David Grudl
  * @copyright  Copyright (c) 2009 David Grudl
- * @package    Nette Extras
  * @extendet by: geniv
  */
 class VisualPaginator extends Nette\Application\UI\Control
@@ -33,7 +31,26 @@ class VisualPaginator extends Nette\Application\UI\Control
     /** @persistent */
     public $page = 1;
 
-    private $pathTemplate = '/visualPaginator.latte';
+    /**
+     * @var Nette\Localization\ITranslator
+     */
+    private $translator;
+
+    /**
+     * @var string path to template
+     */
+    private $pathTemplate;
+
+
+    /**
+     * VisualPaginator constructor.
+     * @param Nette\Localization\ITranslator $translator
+     */
+    public function __construct(Nette\Localization\ITranslator $translator)
+    {
+        $this->translator = $translator;
+        $this->pathTemplate = __DIR__ . '/visualPaginator.latte';
+    }
 
 
     /**
@@ -44,7 +61,6 @@ class VisualPaginator extends Nette\Application\UI\Control
         if (!$this->paginator) {
             $this->paginator = new Paginator;
         }
-
         return $this->paginator;
     }
 
@@ -94,7 +110,8 @@ class VisualPaginator extends Nette\Application\UI\Control
         $this->template->steps = $steps;
         $this->template->paginator = $paginator;
 
-        $this->template->setFile(__DIR__ . $this->pathTemplate);
+        $this->template->setTranslator($this->translator);
+        $this->template->setFile($this->pathTemplate);
         $this->template->render();
     }
 

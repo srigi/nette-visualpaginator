@@ -7,14 +7,11 @@ provides comfortable way to render pagination component on long listings.
 
 New BSD License
 
-## Links
-
-- documentation (Czech language): http://addons.nette.org/cs/visualpaginator
-
 ## Authors
 
 - Davig Grudl
 - Igor Hlina
+- Radek Fryšták
 
 
 [nette]: http://nette.org/

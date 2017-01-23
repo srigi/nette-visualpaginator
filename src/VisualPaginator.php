@@ -44,9 +44,9 @@ class VisualPaginator extends Nette\Application\UI\Control
 
     /**
      * VisualPaginator constructor.
-     * @param Nette\Localization\ITranslator $translator
+     * @param \Nette\Localization\ITranslator|null $translator
      */
-    public function __construct(Nette\Localization\ITranslator $translator)
+    public function __construct(Nette\Localization\ITranslator $translator = null)
     {
         $this->translator = $translator;
         $this->pathTemplate = __DIR__ . '/visualPaginator.latte';

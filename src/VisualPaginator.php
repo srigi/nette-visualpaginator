@@ -5,56 +5,50 @@
  *
  * This source file is subject to the New BSD License.
  *
- * For more information please see http://addons.nette.org
- *
  * @copyright  Copyright (c) 2009 David Grudl
  * @license    New BSD License
- * @link       http://addons.nette.org
  */
 
-
 use Nette\Utils\Paginator;
-
+use Nette\Application\UI\Control;
+use Nette\Localization\ITranslator;
 
 /**
  * Visual paginator control.
  *
- * @author     David Grudl
+ * @author     David Grudl edit by Radek Frystak <geniv.radek@gmail.com>
  * @copyright  Copyright (c) 2009 David Grudl
- * @extendet by: geniv
  */
-class VisualPaginator extends Nette\Application\UI\Control
+class VisualPaginator extends Control
 {
-    /** @var Nette\Utils\Paginator */
+    /** @var Paginator */
     private $paginator;
 
     /** @persistent */
     public $page = 1;
 
-    /**
-     * @var Nette\Localization\ITranslator
-     */
+    /** @var ITranslator */
     private $translator;
 
-    /**
-     * @var string path to template
-     */
+    /** @var string path to template */
     private $pathTemplate;
 
 
     /**
      * VisualPaginator constructor.
-     * @param \Nette\Localization\ITranslator|null $translator
+     * @param ITranslator|null $translator
      */
-    public function __construct(Nette\Localization\ITranslator $translator = null)
+    public function __construct(ITranslator $translator = null)
     {
+        parent::__construct();
+
         $this->translator = $translator;
         $this->pathTemplate = __DIR__ . '/visualPaginator.latte';
     }
 
 
     /**
-     * @return Nette\Utils\Paginator
+     * @return Paginator
      */
     public function getPaginator()
     {
@@ -88,14 +82,13 @@ class VisualPaginator extends Nette\Application\UI\Control
 
         if (NULL !== $options) {
             $paginator->setItemCount($options['count']);
-            $paginator->setItemsPerPage($options['pageSize']);
+            $paginator->setItemsPerPage($options['perPage']);
         }
 
         $page = $paginator->page;
 
         if ($paginator->pageCount < 2) {
             $steps = array($page);
-
         } else {
             $arr = range(max($paginator->firstPage, $page - 3), min($paginator->lastPage, $page + 3));
             $count = 4;

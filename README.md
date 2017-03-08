@@ -14,11 +14,15 @@ $ composer require geniv/nette-visualpaginator
 
 composer.json:
 ```json
-  "geniv/nette-visualpaginator": ">=1.0",
+"geniv/nette-visualpaginator": ">=1.0",
 ```
 
 Using
 -----
+
+```neon
+- VisualPaginator
+```
 
 basic usage:
 ```php
@@ -31,15 +35,20 @@ use VisualPaginator;
 public $visualPaginator;
 
 public function renderDefault()
+    // for dibi
     $items = $this->model->getList();
-    
+
+    $items = range(1, 150);
+
     $vp = $this->visualPaginator->getPaginator();
-    $vp->setItemCount(count($items->fetchAll()))
+    $vp->setItemCount(count($items))
         ->setItemsPerPage(5);
 
-    $this->template->items = $items
-        ->limit($vp->getLength())
-        ->offset($vp->getOffset());
+    // for dibi
+    $this->template->items = $items->limit($vp->getLength())->offset($vp->getOffset());
+
+    // for array
+    $this->template->items = array_slice($items, $vp->getOffset(), $vp->getLength())
 }
 
 protected function createComponentVisualPaginator()
@@ -49,6 +58,7 @@ protected function createComponentVisualPaginator()
 ```
 
 advance usage:
+
 ```php
 protected function createComponentVisualPaginator()
 {
@@ -65,8 +75,7 @@ use VisualPaginator;
 
 protected function createComponentVisualPaginator(VisualPaginator $visualPaginator)
 {
-    return $this->visualPaginator
-        ->setPathTemplate(__DIR__ . '/templates/pagination.latte');
+    return $visualPaginator;
 }
 ```
 
@@ -74,6 +83,10 @@ Calling it from templates
 
 ```latte
 {control visualPaginator}
+
+or 
+
+{control visualPaginator, count=>200, perPage=>5}
 ```
 
 ## License

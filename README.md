@@ -67,7 +67,7 @@ protected function createComponentVisualPaginator()
 }
 ```
 
-or use with Autowire (eg. geniv/autowired)
+or use with Autowire (eg. geniv/nette-autowired)
 
 ```php
 use AutowireComponentFactories;
